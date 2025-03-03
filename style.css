@@ -242,3 +242,74 @@ footer img {
         font-size: 24px;
     }
 }
+
+/* Rating Options Container */
+.rating-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+/* Style rating labels as circular buttons */
+.rating-options label {
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hide the radio input visually */
+.rating-options input[type="radio"] {
+    display: none;
+}
+
+/* Rating option text styling */
+.rating-options span {
+    font-size: 16px;
+    font-weight: bold;
+    pointer-events: none;
+    color: #444;
+}
+
+/* Hover state for labels: add slight rotation for cool effect */
+.rating-options label:hover {
+    background-color: #e0f7fa;
+    border-color: #4CAF50;
+    transform: rotate(5deg) scale(1.05);
+}
+
+/* Active state for labels: pulse effect on click */
+.rating-options label:active {
+    animation: pulse 0.4s ease-out;
+}
+
+/* Selected (clicked) state using modern :has() pseudo-class */
+.rating-options label:has(input:checked) {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+    transform: scale(1.1);
+}
+.rating-options label:has(input:checked) span {
+    color: #fff;
+}
+
+/* Pulse animation keyframes */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

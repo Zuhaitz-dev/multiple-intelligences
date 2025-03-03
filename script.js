@@ -14,43 +14,32 @@ const translations = {
             existential: "Existential"
         },
         questions: {
-            // Linguistic
             q1: "Do you enjoy reading books or writing stories?",
             q2: "Do you find it easy to learn new languages?",
             q3: "Do you often engage in debates or discussions?",
-            // Logical-Mathematical
             q4: "Do you enjoy solving complex mathematical problems?",
             q5: "Are you good at recognizing patterns in data?",
             q6: "Do you like analyzing logical sequences?",
-            // Interpersonal
             q7: "Do you easily understand others' feelings?",
             q8: "Do you prefer working in groups?",
             q9: "Are you good at resolving conflicts?",
-            // Intrapersonal
             q10: "Do you spend time reflecting on your thoughts?",
             q11: "Do you prefer working independently?",
             q12: "Are you aware of your strengths/weaknesses?",
-            // Musical
             q13: "Can you easily recognize musical patterns?",
             q14: "Do you often create melodies in your head?",
             q15: "Are you sensitive to sounds in your environment?",
-            // Naturalistic
             q16: "Do you enjoy categorizing plants/animals?",
             q17: "Are you sensitive to nature changes?",
             q18: "Do you like outdoor activities?",
-            // Spatial
             q19: "Are you good at reading maps?",
             q20: "Do you enjoy visual arts?",
             q21: "Can you easily visualize 3D objects?",
-            // Existential
             q22: "Do you ponder life's big questions?",
             q23: "Are you interested in philosophy?",
             q24: "Do you think about humanity's purpose?"
         },
-        options: {
-            yes: "Yes",
-            no: "No"
-        },
+        scale: ["1", "2", "3", "4", "5"],
         submitButton: "Submit",
         resultTitle: "Result"
     },
@@ -91,10 +80,7 @@ const translations = {
             q23: "Ești interesat de filosofie?",
             q24: "Te gândești la scopul umanității?"
         },
-        options: {
-            yes: "Da",
-            no: "Nu"
-        },
+        scale: ["1", "2", "3", "4", "5"],
         submitButton: "Trimite",
         resultTitle: "Rezultat"
     },
@@ -135,10 +121,7 @@ const translations = {
             q23: "¿Te interesa la filosofía?",
             q24: "¿Piensas en el propósito de la humanidad?"
         },
-        options: {
-            yes: "Sí",
-            no: "No"
-        },
+        scale: ["1", "2", "3", "4", "5"],
         submitButton: "Enviar",
         resultTitle: "Resultado"
     }
@@ -146,44 +129,46 @@ const translations = {
 
 // Mapping of questions to intelligence types
 const questionMapping = {
-    q1: 'linguistic', q2: 'linguistic', q3: 'linguistic',
-    q4: 'logical',   q5: 'logical',    q6: 'logical',
-    q7: 'interpersonal', q8: 'interpersonal', q9: 'interpersonal',
-    q10: 'intrapersonal', q11: 'intrapersonal', q12: 'intrapersonal',
-    q13: 'musical', q14: 'musical', q15: 'musical',
-    q16: 'naturalistic', q17: 'naturalistic', q18: 'naturalistic',
-    q19: 'spatial', q20: 'spatial', q21: 'spatial',
-    q22: 'existential', q23: 'existential', q24: 'existential'
+    q1: 'linguistic',   q2: 'linguistic',      q3: 'linguistic',
+    q4: 'logical',      q5: 'logical',         q6: 'logical',
+    q7: 'interpersonal',q8: 'interpersonal',   q9: 'interpersonal',
+    q10: 'intrapersonal',q11: 'intrapersonal',  q12: 'intrapersonal',
+    q13: 'musical',     q14: 'musical',         q15: 'musical',
+    q16: 'naturalistic',q17: 'naturalistic',    q18: 'naturalistic',
+    q19: 'spatial',     q20: 'spatial',         q21: 'spatial',
+    q22: 'existential', q23: 'existential',     q24: 'existential'
 };
 
 function changeLanguage(lang) {
     currentLang = lang;
     const t = translations[lang];
-    
-    // Update all questions and options
+
+    // Update all questions and scale options (1-5)
+    // For each question, look for 5 option spans with id `qX-optionY`
     for (let i = 1; i <= 24; i++) {
         const textEl = document.getElementById(`q${i}-text`);
-        const option1El = document.getElementById(`q${i}-option1`);
-        const option2El = document.getElementById(`q${i}-option2`);
-        
-        if (textEl && option1El && option2El) {
+        if (textEl) {
             textEl.textContent = t.questions[`q${i}`];
-            option1El.textContent = t.options.yes;
-            option2El.textContent = t.options.no;
+        }
+        for (let opt = 1; opt <= 5; opt++) {
+            const optionEl = document.getElementById(`q${i}-option${opt}`);
+            if (optionEl) {
+                optionEl.textContent = t.scale[opt - 1];
+            }
         }
     }
-    
+
     // Update submit button and result title
     const submitButtonEl = document.getElementById('submit-button');
     if (submitButtonEl) {
         submitButtonEl.textContent = t.submitButton;
     }
-    
+
     const resultTitleEl = document.getElementById('result-title');
     if (resultTitleEl) {
         resultTitleEl.textContent = t.resultTitle;
     }
-    
+
     // Update displayed dominant intelligence (if any)
     const resultIntelligenceEl = document.getElementById('dominant-intelligence');
     if(resultIntelligenceEl && resultIntelligenceEl.textContent && resultIntelligenceEl.dataset.intelligence) {
@@ -199,13 +184,22 @@ document.addEventListener("DOMContentLoaded", () => {
     // Attach language switcher click events (using data-lang)
     document.querySelectorAll(".language-switcher button").forEach(button => {
         button.addEventListener("click", () => {
-            // Play click sound
             const clickSound = document.getElementById("click-sound");
             if (clickSound) {
                 clickSound.play().catch(err => console.log("click-sound play error", err));
             }
             const lang = button.dataset.lang;
             changeLanguage(lang);
+        });
+    });
+  
+    // Attach click event for all radio inputs to play click sound
+    document.querySelectorAll("input[type='radio']").forEach(radio => {
+        radio.addEventListener("click", () => {
+            const clickSound = document.getElementById("click-sound");
+            if (clickSound) {
+                clickSound.play().catch(err => console.log("click-sound play error", err));
+            }
         });
     });
   
@@ -224,11 +218,12 @@ document.addEventListener("DOMContentLoaded", () => {
             existential: 0
         };
 
-        // Count "yes" answers by intelligence type
+        // Sum numeric ratings by intelligence type
         for (let [question, answer] of formData.entries()) {
-            if (answer === "yes") {
-                const type = questionMapping[question];
-                if (type) scores[type]++;
+            const rating = parseInt(answer);
+            const type = questionMapping[question];
+            if (type && !isNaN(rating)) {
+                scores[type] += rating;
             }
         }
 
