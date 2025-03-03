@@ -110,7 +110,7 @@ This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) f
 
 ## Live Demo
 
-Try the quiz live: [Multiple Intelligences Test](https://zuhaitz-dev.github.io/multiple-intelligences-test)
+Try the quiz live: [Multiple Intelligences Test](https://zuhaitz-dev.github.io/multiple-intelligences/)
 
 ---
 
