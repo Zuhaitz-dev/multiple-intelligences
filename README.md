@@ -1,4 +1,4 @@
-# Multiple Intelligences Test
+   # Multiple Intelligences Test
 
 ![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)
 
@@ -87,11 +87,12 @@ git checkout -b feature/your-feature-name
 ```bash
 git commit -m "Add your message here"
 ```
-Push to the Branch:
+5. Push to the Branch:
 ```bash
 git push origin feature/your-feature-name
 ```
-Open a Pull Request.
+6. Open a Pull Request.
+
 ---
 
 ## License
