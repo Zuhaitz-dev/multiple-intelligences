@@ -1,18 +1,24 @@
+/* Global Styles */
+* {
+    box-sizing: border-box;
+}
+
 /* style.css */
 body {
     font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Align to the top instead of center */
-    min-height: 100vh; /* Use min-height instead of height */
+    align-items: flex-start; /* Align items to the top */
+    min-height: 100vh;
     margin: 0;
-    padding: 20px; /* Add padding to the body */
+    padding: 20px 20px 80px; /* Extra bottom padding for footer */
     background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee, #f6d365);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
-    box-sizing: border-box; /* Ensure padding is included in height calculations */
+    overflow-x: hidden;
 }
 
+/* Animated gradient background */
 @keyframes gradientBG {
     0% {
         background-position: 0% 50%;
@@ -25,18 +31,41 @@ body {
     }
 }
 
+/* Quiz container */
 .quiz-container {
     background-color: rgba(255, 255, 255, 0.95);
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     width: 100%;
-    max-width: 500px; /* Fixed maximum width */
+    max-width: 500px;
     text-align: center;
     animation: fadeIn 1s ease-in-out;
-    margin-top: 20px; /* Add margin to the top */
+    margin: 20px auto;
+    overflow-y: auto;
+    max-height: calc(100vh - 160px);
 }
 
+/* Custom Scrollbar Styles for Quiz Container */
+.quiz-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.quiz-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 5px;
+}
+
+.quiz-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+.quiz-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Fade-in animation */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -48,6 +77,7 @@ body {
     }
 }
 
+/* Typography */
 h1 {
     font-size: 28px;
     color: #333;
@@ -60,6 +90,7 @@ h1 {
     margin-bottom: 25px;
 }
 
+/* Question styling */
 .question {
     margin-bottom: 20px;
     text-align: left;
@@ -75,6 +106,7 @@ h1 {
     margin-bottom: 10px;
 }
 
+/* Answer labels styling */
 label {
     display: block;
     margin: 10px 0;
@@ -94,6 +126,7 @@ input[type="radio"] {
     margin-right: 10px;
 }
 
+/* Submit Button */
 button {
     margin-top: 20px;
     padding: 12px 24px;
@@ -111,10 +144,12 @@ button:hover {
     transform: scale(1.05);
 }
 
+/* Hidden elements */
 .hidden {
     display: none;
 }
 
+/* Result display */
 #result {
     margin-top: 20px;
     animation: fadeIn 0.5s ease-in-out;
@@ -125,4 +160,85 @@ button:hover {
     font-weight: bold;
     color: #4CAF50;
     margin-top: 10px;
+}
+
+/* Footer styling */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    color: #666;
+    z-index: 10;
+}
+
+footer p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+footer a {
+    color: #4CAF50;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+footer a:hover {
+    color: #45a049;
+    text-decoration: underline;
+}
+
+footer img {
+    vertical-align: middle;
+    height: 20px;
+}
+
+/* Language Switcher */
+.language-switcher {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 20;
+}
+
+.language-switcher button {
+    padding: 8px 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.language-switcher button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .quiz-container {
+        padding: 20px;
+        max-width: 90%;
+        margin-top: 10px;
+        max-height: calc(100vh - 140px);
+    }
+
+    h1 {
+        font-size: 24px;
+    }
 }
