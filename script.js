@@ -1,80 +1,258 @@
-// Sound effects
-const clickSound = document.getElementById('click-sound');
-const resultSound = document.getElementById('result-sound');
+// Global current language variable (default is English)
+let currentLang = "en";
 
-// Play click sound on radio button click
-const radioButtons = document.querySelectorAll('input[type="radio"]');
-radioButtons.forEach(radio => {
-    radio.addEventListener('click', () => {
-        clickSound.play();
-    });
-});
-
-// Play click sound on button hover and click
-const button = document.querySelector('button');
-button.addEventListener('mouseenter', () => clickSound.play());
-button.addEventListener('click', () => clickSound.play());
-
-document.getElementById('quiz-form').addEventListener('submit', function(e) {
-    // Check if all questions are answered
-    const allQuestionsAnswered = Array.from(document.querySelectorAll('.question')).every(question => {
-        return question.querySelector('input[type="radio"]:checked') !== null;
-    });
-
-    if (!allQuestionsAnswered) {
-        e.preventDefault(); // Prevent form submission
-        alert('Please answer all questions before submitting.'); // Show a warning message
-        return;
+const translations = {
+    en: {
+        intelligences: {
+            linguistic: "Linguistic",
+            logical: "Logical-Mathematical",
+            interpersonal: "Interpersonal",
+            intrapersonal: "Intrapersonal",
+            musical: "Musical",
+            naturalistic: "Naturalistic",
+            spatial: "Spatial",
+            existential: "Existential"
+        },
+        questions: {
+            // Linguistic
+            q1: "Do you enjoy reading books or writing stories?",
+            q2: "Do you find it easy to learn new languages?",
+            q3: "Do you often engage in debates or discussions?",
+            // Logical-Mathematical
+            q4: "Do you enjoy solving complex mathematical problems?",
+            q5: "Are you good at recognizing patterns in data?",
+            q6: "Do you like analyzing logical sequences?",
+            // Interpersonal
+            q7: "Do you easily understand others' feelings?",
+            q8: "Do you prefer working in groups?",
+            q9: "Are you good at resolving conflicts?",
+            // Intrapersonal
+            q10: "Do you spend time reflecting on your thoughts?",
+            q11: "Do you prefer working independently?",
+            q12: "Are you aware of your strengths/weaknesses?",
+            // Musical
+            q13: "Can you easily recognize musical patterns?",
+            q14: "Do you often create melodies in your head?",
+            q15: "Are you sensitive to sounds in your environment?",
+            // Naturalistic
+            q16: "Do you enjoy categorizing plants/animals?",
+            q17: "Are you sensitive to nature changes?",
+            q18: "Do you like outdoor activities?",
+            // Spatial
+            q19: "Are you good at reading maps?",
+            q20: "Do you enjoy visual arts?",
+            q21: "Can you easily visualize 3D objects?",
+            // Existential
+            q22: "Do you ponder life's big questions?",
+            q23: "Are you interested in philosophy?",
+            q24: "Do you think about humanity's purpose?"
+        },
+        options: {
+            yes: "Yes",
+            no: "No"
+        },
+        submitButton: "Submit",
+        resultTitle: "Result"
+    },
+    ro: {
+        intelligences: {
+            linguistic: "Lingvistică",
+            logical: "Logică-Matematică",
+            interpersonal: "Interpersonală",
+            intrapersonal: "Intrapersonală",
+            musical: "Muzicală",
+            naturalistic: "Naturalistă",
+            spatial: "Spațială",
+            existential: "Existențială"
+        },
+        questions: {
+            q1: "Îți place să citești cărți sau să scrii povești?",
+            q2: "Îți este ușor să înveți limbi străine?",
+            q3: "Te implici adesea în dezbateri sau discuții?",
+            q4: "Îți place să rezolvi probleme matematice complexe?",
+            q5: "Ești bun la recunoașterea tiparelor în date?",
+            q6: "Îți place să analizezi secvențe logice?",
+            q7: "Înțelegi cu ușurință sentimentele altora?",
+            q8: "Preferi să lucrezi în grup?",
+            q9: "Ești bun la rezolvarea conflictelor?",
+            q10: "Petreci timp reflectând asupra gândurilor tale?",
+            q11: "Preferi să lucrezi independent?",
+            q12: "Ești conștient de punctele tale forte/slabe?",
+            q13: "Poți recunoaște cu ușurință tipare muzicale?",
+            q14: "Creezi adesea melodii în mintea ta?",
+            q15: "Ești sensibil la sunetele din mediul tău?",
+            q16: "Îți place să categorizezi plantele/animalele?",
+            q17: "Ești sensibil la schimbările din natură?",
+            q18: "Îți plac activitățile în aer liber?",
+            q19: "Ești bun la citirea hărților?",
+            q20: "Îți plac artele vizuale?",
+            q21: "Poți vizualiza cu ușurință obiecte 3D?",
+            q22: "Reflectezi asupra marilor întrebări ale vieții?",
+            q23: "Ești interesat de filosofie?",
+            q24: "Te gândești la scopul umanității?"
+        },
+        options: {
+            yes: "Da",
+            no: "Nu"
+        },
+        submitButton: "Trimite",
+        resultTitle: "Rezultat"
+    },
+    es: {
+        intelligences: {
+            linguistic: "Lingüística",
+            logical: "Lógico-Matemática",
+            interpersonal: "Interpersonal",
+            intrapersonal: "Intrapersonal",
+            musical: "Musical",
+            naturalistic: "Naturalista",
+            spatial: "Espacial",
+            existential: "Existencial"
+        },
+        questions: {
+            q1: "¿Disfrutas leyendo libros o escribiendo historias?",
+            q2: "¿Te resulta fácil aprender nuevos idiomas?",
+            q3: "¿Participas a menudo en debates o discusiones?",
+            q4: "¿Disfrutas resolver problemas matemáticos complejos?",
+            q5: "¿Eres bueno reconociendo patrones en datos?",
+            q6: "¿Te gusta analizar secuencias lógicas?",
+            q7: "¿Entiendes fácilmente los sentimientos de los demás?",
+            q8: "¿Prefieres trabajar en grupo?",
+            q9: "¿Eres bueno resolviendo conflictos?",
+            q10: "¿Pasas tiempo reflexionando sobre tus pensamientos?",
+            q11: "¿Prefieres trabajar de manera independiente?",
+            q12: "¿Eres consciente de tus fortalezas y debilidades?",
+            q13: "¿Puedes reconocer fácilmente patrones musicales?",
+            q14: "¿A menudo creas melodías en tu cabeza?",
+            q15: "¿Eres sensible a los sonidos de tu entorno?",
+            q16: "¿Disfrutas categorizando plantas o animales?",
+            q17: "¿Eres sensible a los cambios en la naturaleza?",
+            q18: "¿Te gustan las actividades al aire libre?",
+            q19: "¿Eres bueno leyendo mapas?",
+            q20: "¿Disfrutas de las artes visuales?",
+            q21: "¿Puedes visualizar fácilmente objetos en 3D?",
+            q22: "¿Reflexionas sobre las grandes preguntas de la vida?",
+            q23: "¿Te interesa la filosofía?",
+            q24: "¿Piensas en el propósito de la humanidad?"
+        },
+        options: {
+            yes: "Sí",
+            no: "No"
+        },
+        submitButton: "Enviar",
+        resultTitle: "Resultado"
     }
+};
 
-    e.preventDefault();
+// Mapping of questions to intelligence types
+const questionMapping = {
+    q1: 'linguistic', q2: 'linguistic', q3: 'linguistic',
+    q4: 'logical',   q5: 'logical',    q6: 'logical',
+    q7: 'interpersonal', q8: 'interpersonal', q9: 'interpersonal',
+    q10: 'intrapersonal', q11: 'intrapersonal', q12: 'intrapersonal',
+    q13: 'musical', q14: 'musical', q15: 'musical',
+    q16: 'naturalistic', q17: 'naturalistic', q18: 'naturalistic',
+    q19: 'spatial', q20: 'spatial', q21: 'spatial',
+    q22: 'existential', q23: 'existential', q24: 'existential'
+};
 
-    // Simulate a loading state
-    button.textContent = 'Calculating...';
-    button.disabled = true;
+function changeLanguage(lang) {
+    currentLang = lang;
+    const t = translations[lang];
+    
+    // Update all questions and options
+    for (let i = 1; i <= 24; i++) {
+        const textEl = document.getElementById(`q${i}-text`);
+        const option1El = document.getElementById(`q${i}-option1`);
+        const option2El = document.getElementById(`q${i}-option2`);
+        
+        if (textEl && option1El && option2El) {
+            textEl.textContent = t.questions[`q${i}`];
+            option1El.textContent = t.options.yes;
+            option2El.textContent = t.options.no;
+        }
+    }
+    
+    // Update submit button and result title
+    const submitButtonEl = document.getElementById('submit-button');
+    if (submitButtonEl) {
+        submitButtonEl.textContent = t.submitButton;
+    }
+    
+    const resultTitleEl = document.getElementById('result-title');
+    if (resultTitleEl) {
+        resultTitleEl.textContent = t.resultTitle;
+    }
+    
+    // Update displayed dominant intelligence (if any)
+    const resultIntelligenceEl = document.getElementById('dominant-intelligence');
+    if(resultIntelligenceEl && resultIntelligenceEl.textContent && resultIntelligenceEl.dataset.intelligence) {
+        resultIntelligenceEl.textContent = t.intelligences[resultIntelligenceEl.dataset.intelligence];
+    }
+}
 
-    setTimeout(() => {
-        // Get selected answers
-        const answers = {
-            q1: document.querySelector('input[name="q1"]:checked')?.value,
-            q2: document.querySelector('input[name="q2"]:checked')?.value,
-            q3: document.querySelector('input[name="q3"]:checked')?.value,
-            q4: document.querySelector('input[name="q4"]:checked')?.value,
-            q5: document.querySelector('input[name="q5"]:checked')?.value,
-            q6: document.querySelector('input[name="q6"]:checked')?.value,
-            q7: document.querySelector('input[name="q7"]:checked')?.value,
-            q8: document.querySelector('input[name="q8"]:checked')?.value,
-            q9: document.querySelector('input[name="q9"]:checked')?.value,
-            q10: document.querySelector('input[name="q10"]:checked')?.value,
-        };
-
-        // Calculate scores for each intelligence type
+// Handle form submission and calculate dominant intelligence
+document.addEventListener("DOMContentLoaded", () => {
+    // Set default language on load
+    changeLanguage(currentLang);
+  
+    // Attach language switcher click events (using data-lang)
+    document.querySelectorAll(".language-switcher button").forEach(button => {
+        button.addEventListener("click", () => {
+            // Play click sound
+            const clickSound = document.getElementById("click-sound");
+            if (clickSound) {
+                clickSound.play().catch(err => console.log("click-sound play error", err));
+            }
+            const lang = button.dataset.lang;
+            changeLanguage(lang);
+        });
+    });
+  
+    // Handle quiz form submission
+    document.getElementById("quiz-form").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
         const scores = {
             linguistic: 0,
             logical: 0,
             interpersonal: 0,
             intrapersonal: 0,
             musical: 0,
+            naturalistic: 0,
+            spatial: 0,
+            existential: 0
         };
 
-        // Scoring logic
-        for (const key in answers) {
-            const value = answers[key];
-            if (value !== 'none') {
-                scores[value]++;
+        // Count "yes" answers by intelligence type
+        for (let [question, answer] of formData.entries()) {
+            if (answer === "yes") {
+                const type = questionMapping[question];
+                if (type) scores[type]++;
             }
         }
 
-        // Display result
-        const dominant = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-        document.getElementById('dominant-intelligence').textContent = dominant.charAt(0).toUpperCase() + dominant.slice(1);
-        document.getElementById('result').classList.remove('hidden');
+        // Determine dominant intelligence (first highest if tie)
+        let dominant = "";
+        let max = -1;
+        for (let type in scores) {
+            if (scores[type] > max) {
+                max = scores[type];
+                dominant = type;
+            }
+        }
 
-        // Play success sound
-        resultSound.play();
+        // Show result with updated text in the current language
+        const resultEl = document.getElementById("result");
+        const resultIntelligenceEl = document.getElementById("dominant-intelligence");
+        resultIntelligenceEl.dataset.intelligence = dominant;
+        resultIntelligenceEl.textContent = translations[currentLang].intelligences[dominant];
+        resultEl.classList.remove("hidden");
 
-        // Reset button
-        button.textContent = 'Submit';
-        button.disabled = false;
-    }, 1000); // Simulate a 1-second delay
+        // Play result sound
+        const resultSound = document.getElementById("result-sound");
+        if (resultSound) {
+            resultSound.play().catch(err => console.log("result-sound play error", err));
+        }
+    });
 });
