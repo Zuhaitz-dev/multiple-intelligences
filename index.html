@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Intelligences Test</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Sound Effects -->
+    <audio id="click-sound">
+        <source src="click-sound.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <audio id="result-sound">
+        <source src="success-sound.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="quiz-container">
+        <h1>Multiple Intelligences Test</h1>
+        <p class="description">Discover your dominant intelligence by answering a few questions.</p>
+        <form id="quiz-form">
+            <!-- Linguistic Intelligence -->
+            <div class="question">
+                <p>1. Do you enjoy reading books or writing stories?</p>
+                <label>
+                    <input type="radio" name="q1" value="linguistic" required> Yes
+                </label>
+                <label>
+                    <input type="radio" name="q1" value="none" required> No
+                </label>
+            </div>
+            <div class="question">
+                <p>2. Do you find it easy to learn new languages?</p>
+                <label>
+                    <input type="radio" name="q2" value="linguistic" required> Yes
+                </label>
+                <label>
+                    <input type="radio" name="q2" value="none" required> No
+                </label>
+            </div>
+
+            <!-- Logical-Mathematical Intelligence -->
+            <div class="question">
+                <p>3. Do you enjoy solving puzzles or math problems?</p>
+                <label>
+                    <input type="radio" name="q3" value="logical" required> Yes
+                </label>
+                <label>
+                    <input type="radio" name="q3" value="none" required> No
+                </label>
+            </div>
+            <div class="question">
+                <p>4. Are you good at analyzing data or finding patterns?</p>
+                <label>
+                    <input type="radio" name="q4" value="logical" required> Yes
+                </label>
+                <label>
+                    <input type="radio" name="q4" value="none" required> No
+                </label>
+            </div>
+
+            <!-- Interpersonal Intelligence -->
+            <div class="question">
+                <p>5. Do you enjoy working in teams and helping others?</p>
+                <label>
+                    <input type="radio" name="q5" value="interpersonal" required> Yes
+                </label>
+                <label>
+                    <input type="radio" name="q5" value="none" required> No
+                </label>
+            </div>
+            <div class="question">
+                <p>6. Are you good at understanding other people's feelings?</p>
+                <label>
+                    <input type="radio" name="q6" value="interpersonal" required> Yes
+                </label>
+                <label>
+                    <input type="radio" name="q6" value="none" required> No
+                </label>
+            </div>
+
+            <!-- Intrapersonal Intelligence -->
+            <div class="question">
+                <p>7. Do you prefer working alone and reflecting on your thoughts?</p>
+                <label>
+                    <input type="radio" name="q7" value="intrapersonal" required> Yes
+                </label>
+                <label>
+                    <input type="radio" name="q7" value="none" required> No
+                </label>
+            </div>
+            <div class="question">
+                <p>8. Are you self-aware and good at setting personal goals?</p>
+                <label>
+                    <input type="radio" name="q8" value="intrapersonal" required> Yes
+                </label>
+                <label>
+                    <input type="radio" name="q8" value="none" required> No
+                </label>
+            </div>
+
+            <!-- Musical Intelligence -->
+            <div class="question">
+                <p>9. Do you enjoy listening to or creating music?</p>
+                <label>
+                    <input type="radio" name="q9" value="musical" required> Yes
+                </label>
+                <label>
+                    <input type="radio" name="q9" value="none" required> No
+                </label>
+            </div>
+            <div class="question">
+                <p>10. Are you good at recognizing rhythms and melodies?</p>
+                <label>
+                    <input type="radio" name="q10" value="musical" required> Yes
+                </label>
+                <label>
+                    <input type="radio" name="q10" value="none" required> No
+                </label>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+        <div id="result" class="hidden">
+            <h2>Your Dominant Intelligence:</h2>
+            <p id="dominant-intelligence" class="result-text"></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
