@@ -4,31 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multiple Intelligences Test</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=1.0.1">
 </head>
 <body>
     <!-- Sound Effects -->
-    <audio id="click-sound" preload="auto">
-        <source src="click-sound.mp3" type="audio/mpeg">
+    <audio id="click-sound">
+        <source src="click-sound.mp3?v=1.0.1" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
-    <audio id="result-sound" preload="auto">
-        <source src="success-sound.mp3" type="audio/mpeg">
+    <audio id="result-sound">
+        <source src="success-sound.mp3?v=1.0.1" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
     <!-- Language Switcher -->
     <div class="language-switcher">
-        <button data-lang="en">English</button>
-        <button data-lang="ro">Română</button>
-        <button data-lang="es">Español</button>
+        <button onclick="changeLanguage('en')">English</button>
+        <button onclick="changeLanguage('ro')">Română</button>
+        <button onclick="changeLanguage('es')">Español</button>
     </div>
 
     <div class="quiz-container">
         <h1 id="quiz-title">Multiple Intelligences Test</h1>
         <p id="quiz-description" class="description"></p>
         <form id="quiz-form">
+
             <!-- Linguistic Intelligence -->
             <div class="question-group">
                 <div class="question">
@@ -180,7 +181,7 @@
                     <label><input type="radio" name="q24" value="no" required><span id="q24-option2"></span></label>
                 </div>
             </div>
-
+            
             <button type="submit" id="submit-button">Submit</button>
         </form>
         <div id="result" class="hidden">
@@ -205,6 +206,6 @@
         </p>
     </footer>
 
-    <script src="script.js" defer></script>
+    <script src="script.js?v=1.0.1"></script>
 </body>
 </html>
