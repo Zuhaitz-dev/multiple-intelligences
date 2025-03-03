@@ -1,6 +1,8 @@
    # Multiple Intelligences Test
 
 ![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)
+![GitHub Repo Size](https://img.shields.io/github/repo-size/Zuhaitz-dev/multiple-intelligences)
+![GitHub Last Commit](https://img.shields.io/github/last-commit/Zuhaitz-dev/multiple-intelligences)
 
 A modern, interactive web-based quiz to help users discover their dominant intelligence type based on Howard Gardner's Theory of Multiple Intelligences. Available in **English**, **Romanian**, and **Spanish**.
 
@@ -55,7 +57,7 @@ The quiz evaluates the following intelligence types based on Howard Gardner's th
 
 1. Clone the repository to your local machine.
    ```bash
-   git clone https://github.com/Zuhaitz-dev/multiple-intelligences-test.git
+   git clone https://github.com/Zuhaitz-dev/multiple-intelligences.git
    ``` 
 2. Open the `index.html` file in your browser to start the quiz.
 
