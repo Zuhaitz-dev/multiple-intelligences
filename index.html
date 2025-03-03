@@ -8,127 +8,203 @@
 </head>
 <body>
     <!-- Sound Effects -->
-    <audio id="click-sound">
+    <audio id="click-sound" preload="auto">
         <source src="click-sound.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
-    <audio id="result-sound">
+    <audio id="result-sound" preload="auto">
         <source src="success-sound.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button data-lang="en">English</button>
+        <button data-lang="ro">Română</button>
+        <button data-lang="es">Español</button>
+    </div>
+
     <div class="quiz-container">
-        <h1>Multiple Intelligences Test</h1>
-        <p class="description">Discover your dominant intelligence by answering a few questions.</p>
+        <h1 id="quiz-title">Multiple Intelligences Test</h1>
+        <p id="quiz-description" class="description"></p>
         <form id="quiz-form">
             <!-- Linguistic Intelligence -->
-            <div class="question">
-                <p>1. Do you enjoy reading books or writing stories?</p>
-                <label>
-                    <input type="radio" name="q1" value="linguistic" required> Yes
-                </label>
-                <label>
-                    <input type="radio" name="q1" value="none" required> No
-                </label>
-            </div>
-            <div class="question">
-                <p>2. Do you find it easy to learn new languages?</p>
-                <label>
-                    <input type="radio" name="q2" value="linguistic" required> Yes
-                </label>
-                <label>
-                    <input type="radio" name="q2" value="none" required> No
-                </label>
+            <div class="question-group">
+                <div class="question">
+                    <p id="q1-text"></p>
+                    <label><input type="radio" name="q1" value="yes" required><span id="q1-option1"></span></label>
+                    <label><input type="radio" name="q1" value="no" required><span id="q1-option2"></span></label>
+                </div>
+                <div class="question">
+                    <p id="q2-text"></p>
+                    <label><input type="radio" name="q2" value="yes" required><span id="q2-option1"></span></label>
+                    <label><input type="radio" name="q2" value="no" required><span id="q2-option2"></span></label>
+                </div>
+                <div class="question">
+                    <p id="q3-text"></p>
+                    <label><input type="radio" name="q3" value="yes" required><span id="q3-option1"></span></label>
+                    <label><input type="radio" name="q3" value="no" required><span id="q3-option2"></span></label>
+                </div>
             </div>
 
             <!-- Logical-Mathematical Intelligence -->
-            <div class="question">
-                <p>3. Do you enjoy solving puzzles or math problems?</p>
-                <label>
-                    <input type="radio" name="q3" value="logical" required> Yes
-                </label>
-                <label>
-                    <input type="radio" name="q3" value="none" required> No
-                </label>
-            </div>
-            <div class="question">
-                <p>4. Are you good at analyzing data or finding patterns?</p>
-                <label>
-                    <input type="radio" name="q4" value="logical" required> Yes
-                </label>
-                <label>
-                    <input type="radio" name="q4" value="none" required> No
-                </label>
+            <div class="question-group">
+                <div class="question">
+                    <p id="q4-text"></p>
+                    <label><input type="radio" name="q4" value="yes" required><span id="q4-option1"></span></label>
+                    <label><input type="radio" name="q4" value="no" required><span id="q4-option2"></span></label>
+                </div>
+                <div class="question">
+                    <p id="q5-text"></p>
+                    <label><input type="radio" name="q5" value="yes" required><span id="q5-option1"></span></label>
+                    <label><input type="radio" name="q5" value="no" required><span id="q5-option2"></span></label>
+                </div>
+                <div class="question">
+                    <p id="q6-text"></p>
+                    <label><input type="radio" name="q6" value="yes" required><span id="q6-option1"></span></label>
+                    <label><input type="radio" name="q6" value="no" required><span id="q6-option2"></span></label>
+                </div>
             </div>
 
             <!-- Interpersonal Intelligence -->
-            <div class="question">
-                <p>5. Do you enjoy working in teams and helping others?</p>
-                <label>
-                    <input type="radio" name="q5" value="interpersonal" required> Yes
-                </label>
-                <label>
-                    <input type="radio" name="q5" value="none" required> No
-                </label>
-            </div>
-            <div class="question">
-                <p>6. Are you good at understanding other people's feelings?</p>
-                <label>
-                    <input type="radio" name="q6" value="interpersonal" required> Yes
-                </label>
-                <label>
-                    <input type="radio" name="q6" value="none" required> No
-                </label>
-            </div>
+            <div class="question-group">
+                <div class="question">
+                    <p id="q7-text"></p>
+                    <label><input type="radio" name="q7" value="yes" required><span id="q7-option1"></span></label>
+                    <label><input type="radio" name="q7" value="no" required><span id="q7-option2"></span></label>
+                </div>
+                <div class="question">
+                    <p id="q8-text"></p>
+                    <label><input type="radio" name="q8" value="yes" required><span id="q8-option1"></span></label>
+                    <label><input type="radio" name="q8" value="no" required><span id="q8-option2"></span></label>
+                </div>
+                <div class="question">
+                    <p id="q9-text"></p>
+                    <label><input type="radio" name="q9" value="yes" required><span id="q9-option1"></span></label>
+                    <label><input type="radio" name="q9" value="no" required><span id="q9-option2"></span></label>
+                </div>
+            </div>   
 
             <!-- Intrapersonal Intelligence -->
-            <div class="question">
-                <p>7. Do you prefer working alone and reflecting on your thoughts?</p>
-                <label>
-                    <input type="radio" name="q7" value="intrapersonal" required> Yes
-                </label>
-                <label>
-                    <input type="radio" name="q7" value="none" required> No
-                </label>
-            </div>
-            <div class="question">
-                <p>8. Are you self-aware and good at setting personal goals?</p>
-                <label>
-                    <input type="radio" name="q8" value="intrapersonal" required> Yes
-                </label>
-                <label>
-                    <input type="radio" name="q8" value="none" required> No
-                </label>
+            <div class="question-group">
+                <div class="question">
+                    <p id="q10-text"></p>
+                    <label><input type="radio" name="q10" value="yes" required><span id="q10-option1"></span></label>
+                    <label><input type="radio" name="q10" value="no" required><span id="q10-option2"></span></label>
+                </div>
+                <div class="question">
+                    <p id="q11-text"></p>
+                    <label><input type="radio" name="q11" value="yes" required><span id="q11-option1"></span></label>
+                    <label><input type="radio" name="q11" value="no" required><span id="q11-option2"></span></label>
+                </div>
+                <div class="question">
+                    <p id="q12-text"></p>
+                    <label><input type="radio" name="q12" value="yes" required><span id="q12-option1"></span></label>
+                    <label><input type="radio" name="q12" value="no" required><span id="q12-option2"></span></label>
+                </div>
             </div>
 
             <!-- Musical Intelligence -->
-            <div class="question">
-                <p>9. Do you enjoy listening to or creating music?</p>
-                <label>
-                    <input type="radio" name="q9" value="musical" required> Yes
-                </label>
-                <label>
-                    <input type="radio" name="q9" value="none" required> No
-                </label>
-            </div>
-            <div class="question">
-                <p>10. Are you good at recognizing rhythms and melodies?</p>
-                <label>
-                    <input type="radio" name="q10" value="musical" required> Yes
-                </label>
-                <label>
-                    <input type="radio" name="q10" value="none" required> No
-                </label>
+            <div class="question-group">
+                <div class="question">
+                    <p id="q13-text"></p>
+                    <label><input type="radio" name="q13" value="yes" required><span id="q13-option1"></span></label>
+                    <label><input type="radio" name="q13" value="no" required><span id="q13-option2"></span></label>
+                </div>
+                <div class="question">
+                    <p id="q14-text"></p>
+                    <label><input type="radio" name="q14" value="yes" required><span id="q14-option1"></span></label>
+                    <label><input type="radio" name="q14" value="no" required><span id="q14-option2"></span></label>
+                </div>
+                <div class="question">
+                    <p id="q15-text"></p>
+                    <label><input type="radio" name="q15" value="yes" required><span id="q15-option1"></span></label>
+                    <label><input type="radio" name="q15" value="no" required><span id="q15-option2"></span></label>
+                </div>
             </div>
 
-            <button type="submit">Submit</button>
+            <!-- Naturalistic Intelligence -->
+            <div class="question-group">
+                <div class="question">
+                    <p id="q16-text"></p>
+                    <label><input type="radio" name="q16" value="yes" required><span id="q16-option1"></span></label>
+                    <label><input type="radio" name="q16" value="no" required><span id="q16-option2"></span></label>
+                </div>
+                <div class="question">
+                    <p id="q17-text"></p>
+                    <label><input type="radio" name="q17" value="yes" required><span id="q17-option1"></span></label>
+                    <label><input type="radio" name="q17" value="no" required><span id="q17-option2"></span></label>
+                </div>
+                <div class="question">
+                    <p id="q18-text"></p>
+                    <label><input type="radio" name="q18" value="yes" required><span id="q18-option1"></span></label>
+                    <label><input type="radio" name="q18" value="no" required><span id="q18-option2"></span></label>
+                </div>
+            </div>
+
+            <!-- Spatial Intelligence -->
+            <div class="question-group">
+                <div class="question">
+                    <p id="q19-text"></p>
+                    <label><input type="radio" name="q19" value="yes" required><span id="q19-option1"></span></label>
+                    <label><input type="radio" name="q19" value="no" required><span id="q19-option2"></span></label>
+                </div>
+                <div class="question">
+                    <p id="q20-text"></p>
+                    <label><input type="radio" name="q20" value="yes" required><span id="q20-option1"></span></label>
+                    <label><input type="radio" name="q20" value="no" required><span id="q20-option2"></span></label>
+                </div>
+                <div class="question">
+                    <p id="q21-text"></p>
+                    <label><input type="radio" name="q21" value="yes" required><span id="q21-option1"></span></label>
+                    <label><input type="radio" name="q21" value="no" required><span id="q21-option2"></span></label>
+                </div>
+            </div>
+
+            <!-- Existential Intelligence -->
+            <div class="question-group">
+                <div class="question">
+                    <p id="q22-text"></p>
+                    <label><input type="radio" name="q22" value="yes" required><span id="q22-option1"></span></label>
+                    <label><input type="radio" name="q22" value="no" required><span id="q22-option2"></span></label>
+                </div>
+                <div class="question">
+                    <p id="q23-text"></p>
+                    <label><input type="radio" name="q23" value="yes" required><span id="q23-option1"></span></label>
+                    <label><input type="radio" name="q23" value="no" required><span id="q23-option2"></span></label>
+                </div>
+                <div class="question">
+                    <p id="q24-text"></p>
+                    <label><input type="radio" name="q24" value="yes" required><span id="q24-option1"></span></label>
+                    <label><input type="radio" name="q24" value="no" required><span id="q24-option2"></span></label>
+                </div>
+            </div>
+
+            <button type="submit" id="submit-button">Submit</button>
         </form>
         <div id="result" class="hidden">
-            <h2>Your Dominant Intelligence:</h2>
+            <h2 id="result-title"></h2>
             <p id="dominant-intelligence" class="result-text"></p>
         </div>
     </div>
-    <script src="script.js"></script>
+
+    <!-- Footer -->
+    <footer>
+        <p>
+            <a href="https://opensource.org/licenses/MIT" target="_blank" title="MIT License">
+                <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT License">
+            </a>
+            - 
+            <a href="https://github.com/Zuhaitz-dev" target="_blank">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 0.296C5.37 0.296 0 5.665 0 12.296c0 5.291 3.438 9.79 8.207 11.387.6.112.793-.26.793-.577 0-.286-.011-1.04-.016-2.04-3.338.726-4.043-1.607-4.043-1.607-.546-1.387-1.333-1.757-1.333-1.757-1.09-.744.082-.729.082-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.832 2.805 1.303 3.49.996.107-.775.42-1.303.764-1.602-2.665-.303-5.467-1.333-5.467-5.932 0-1.31.465-2.38 1.235-3.22-.124-.303-.535-1.523.117-3.173 0 0 1.008-.322 3.3 1.23.958-.267 1.983-.4 3.003-.405 1.02.005 2.045.138 3.003.405 2.29-1.552 3.297-1.23 3.297-1.23.653 1.65.243 2.87.12 3.173.77.84 1.234 1.91 1.234 3.22 0 4.61-2.805 5.625-5.478 5.922.43.372.815 1.103.815 2.223 0 1.607-.015 2.903-.015 3.297 0 .32.19.694.8.576C20.566 22.083 24 17.583 24 12.296c0-6.631-5.37-12-12-12z"/>
+                </svg>
+                Zuhaitz-dev
+            </a>
+        </p>
+    </footer>
+
+    <script src="script.js" defer></script>
 </body>
 </html>
