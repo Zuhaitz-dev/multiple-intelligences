@@ -235,6 +235,7 @@ footer img {
         max-width: 95%;
         margin-top: 60px; /* reduced top margin for mobile */
         margin-bottom: 20px; /* add bottom margin for spacing */
+        box-sizing: border-box; /* Ensure padding is included in the width */
     }
     
     h1 {
@@ -275,6 +276,7 @@ footer img {
         padding: 15px;
         font-size: 12px;
         margin: 20px auto 10px;
+        box-sizing: border-box; /* Ensure padding is included in the width */
     }
 
     /* Ensure submit button is visible */
@@ -282,6 +284,7 @@ footer img {
         width: 100%;
         padding: 12px;
         font-size: 16px;
+        box-sizing: border-box; /* Ensure padding is included in the width */
     }
 }
 
@@ -465,6 +468,7 @@ footer img {
         max-width: 95%;
         margin-top: 60px; /* reduced top margin for mobile */
         margin-bottom: 20px; /* add bottom margin for spacing */
+        box-sizing: border-box; /* Ensure padding is included in the width */
     }
     
     h1 {
@@ -505,6 +509,7 @@ footer img {
         padding: 15px;
         font-size: 12px;
         margin: 20px auto 10px;
+        box-sizing: border-box; /* Ensure padding is included in the width */
     }
 
     /* Ensure submit button is visible */
@@ -512,5 +517,6 @@ footer img {
         width: 100%;
         padding: 12px;
         font-size: 16px;
+        box-sizing: border-box; /* Ensure padding is included in the width */
     }
 }
