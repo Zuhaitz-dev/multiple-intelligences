@@ -1,5 +1,5 @@
-// Global current language variable (default is English)
-let currentLang = "en";
+// Global current language variable (default is Romanian)
+let currentLang = "ro";
 
 const translations = {
     en: {
@@ -290,6 +290,8 @@ document.addEventListener("DOMContentLoaded", () => {
     shuffleAndNumerateQuestions();
 
     const header = document.querySelector('.site-header');
+    header.classList.add('visible'); // Make header visible initially
+
     // Listen for mousemove over document
     document.addEventListener('mousemove', (e) => {
         if(e.clientY <= 50) { // if mouse is near the top 50px
