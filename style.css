@@ -212,7 +212,7 @@ footer img {
     gap: 10px;
 }
 .language-switcher button {
-    padding: 8px 16px;
+    padding: 12px 20px; /* Increase padding for larger touch target */
     background: rgba(255, 255, 255, 0.9);
     border: 1px solid #ccc;
     border-radius: 20px;
@@ -226,6 +226,10 @@ footer img {
     background: #f5f5f5;
     transform: scale(1.05);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+.language-switcher button:active {
+    background: #e0e0e0; /* Visual feedback on press */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Responsive adjustments */
@@ -247,8 +251,8 @@ footer img {
     }
 
     .language-switcher button {
-        padding: 6px 12px;
-        font-size: 12px;
+        padding: 10px 16px; /* Adjust padding for smaller screens */
+        font-size: 14px;
     }
     
     .site-header {
@@ -483,8 +487,8 @@ footer img {
     }
 
     .language-switcher button {
-        padding: 6px 12px;
-        font-size: 12px;
+        padding: 10px 16px; /* Adjust padding for smaller screens */
+        font-size: 14px;
     }
     
     .site-header {
