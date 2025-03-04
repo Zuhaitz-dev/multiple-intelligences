@@ -231,14 +231,57 @@ footer img {
 /* Responsive adjustments */
 @media (max-width: 600px) {
     .quiz-container {
-        padding: 20px;
-        max-width: 90%;
-        margin-top: 10px;
-        max-height: calc(100vh - 140px);
+        padding: 15px;
+        max-width: 95%;
+        margin-top: 60px; /* reduced top margin for mobile */
+        margin-bottom: 20px; /* add bottom margin for spacing */
+    }
+    
+    h1 {
+        font-size: 22px;
+    }
+    
+    .description, .result-text, .header-quote {
+        font-size: 14px;
     }
 
-    h1 {
-        font-size: 24px;
+    .language-switcher button {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    
+    .site-header {
+        padding: 10px 20px;
+    }
+    
+    /* Adjust rating labels for smaller screens */
+    .rating-options label {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .rating-options span {
+        font-size: 12px;
+    }
+    
+    /* Ensure randomized questions container fits */
+    #randomized-questions {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Acknowledgment section adjustments */
+    .acknowledgment {
+        padding: 15px;
+        font-size: 12px;
+        margin: 20px auto 10px;
+    }
+
+    /* Ensure submit button is visible */
+    button[type="submit"] {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
     }
 }
 
@@ -421,6 +464,7 @@ footer img {
         padding: 15px;
         max-width: 95%;
         margin-top: 60px; /* reduced top margin for mobile */
+        margin-bottom: 20px; /* add bottom margin for spacing */
     }
     
     h1 {
@@ -454,5 +498,19 @@ footer img {
     #randomized-questions {
         display: flex;
         flex-direction: column;
+    }
+
+    /* Acknowledgment section adjustments */
+    .acknowledgment {
+        padding: 15px;
+        font-size: 12px;
+        margin: 20px auto 10px;
+    }
+
+    /* Ensure submit button is visible */
+    button[type="submit"] {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
     }
 }
