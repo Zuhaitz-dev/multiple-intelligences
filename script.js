@@ -176,6 +176,41 @@ function changeLanguage(lang) {
     }
 }
 
+// Function to shuffle and numerate all question elements
+function shuffleAndNumerateQuestions() {
+    const form = document.getElementById("quiz-form");
+    // Select all question elements (they are inside .question elements)
+    const questionNodes = Array.from(form.querySelectorAll(".question"));
+    
+    // Shuffle the array using Fisher-Yates algorithm
+    for (let i = questionNodes.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [questionNodes[i], questionNodes[j]] = [questionNodes[j], questionNodes[i]];
+    }
+    
+    // Create a container to hold the randomized questions
+    const randomizedContainer = document.createElement("div");
+    randomizedContainer.id = "randomized-questions";
+    
+    // Append questions with numbering
+    questionNodes.forEach((question, index) => {
+        const pElem = question.querySelector("p");
+        if (pElem) {
+            // Prepend the question number
+            pElem.textContent = (index + 1) + ". " + pElem.textContent;
+        }
+        randomizedContainer.appendChild(question);
+    });
+    
+    // Remove the original question groups (they were used to group questions)
+    const groupNodes = form.querySelectorAll(".question-group");
+    groupNodes.forEach(group => group.remove());
+    
+    // Insert the randomized questions before the submit button
+    const submitBtn = form.querySelector("button[type='submit']");
+    form.insertBefore(randomizedContainer, submitBtn);
+}
+
 // Handle form submission and calculate dominant intelligence
 document.addEventListener("DOMContentLoaded", () => {
     // Set default language on load
@@ -248,6 +283,32 @@ document.addEventListener("DOMContentLoaded", () => {
         const resultSound = document.getElementById("result-sound");
         if (resultSound) {
             resultSound.play().catch(err => console.log("result-sound play error", err));
+        }
+    });
+
+    // Randomize and numerate questions after language initialization
+    shuffleAndNumerateQuestions();
+
+    const header = document.querySelector('.site-header');
+    // Listen for mousemove over document
+    document.addEventListener('mousemove', (e) => {
+        if(e.clientY <= 50) { // if mouse is near the top 50px
+            header.classList.add('visible');
+        } else {
+            header.classList.remove('visible');
+        }
+    });
+
+    // Alternatively, you can use scroll event if you want show on scroll upward
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const header = document.querySelector('.site-header');
+    document.addEventListener('mousemove', (e) => {
+        if (e.clientY <= 50) { // Show header when mouse is in the top 50px
+            header.classList.add('visible');
+        } else {
+            header.classList.remove('visible');
         }
     });
 });

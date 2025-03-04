@@ -7,6 +7,22 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header class="site-header">
+        <div class="logo">
+            <svg width="60" height="60" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="black" stroke-width="2">
+                <!-- Open book -->
+                <path d="M10 16 Q20 8 32 16 Q44 8 54 16 L54 48 Q44 56 32 48 Q20 56 10 48 Z" stroke-linejoin="round"/>
+                <!-- Lightbulb -->
+                <circle cx="32" cy="28" r="6"/>
+                <path d="M32 34 V40 M30 40 H34" stroke-linecap="round"/>
+            </svg>            
+        </div>
+        <div class="language-switcher">
+            <button data-lang="en">English</button>
+            <button data-lang="ro">Română</button>
+            <button data-lang="es">Español</button>
+        </div>
+    </header>
     <!-- Sound Effects -->
     <audio id="click-sound" preload="auto">
         <source src="click-sound.mp3" type="audio/mpeg">
@@ -17,13 +33,6 @@
         <source src="success-sound.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
-
-    <!-- Language Switcher -->
-    <div class="language-switcher">
-        <button data-lang="en">English</button>
-        <button data-lang="ro">Română</button>
-        <button data-lang="es">Español</button>
-    </div>
 
     <div class="quiz-container">
         <h1 id="quiz-title">Multiple Intelligences Test</h1>
@@ -324,6 +333,10 @@
             <h2 id="result-title"></h2>
             <p id="dominant-intelligence" class="result-text"></p>
         </div>
+    </div> <!-- End of quiz-container -->
+
+    <div class="acknowledgment">
+        Acknowledgments: Special thanks to <strong>Andreea Dudici</strong> and <strong>Ilinca Gagiu</strong> for their insightful research.
     </div>
 
     <!-- Footer -->
