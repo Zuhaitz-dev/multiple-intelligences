@@ -414,3 +414,45 @@ footer img {
     height: 3px;
     background: repeating-linear-gradient(90deg, rgba(200,200,200,0.6), rgba(200,200,200,0.6) 5px, transparent 5px, transparent 10px);
 }
+
+/* Enhanced Responsive adjustments */
+@media (max-width: 600px) {
+    .quiz-container {
+        padding: 15px;
+        max-width: 95%;
+        margin-top: 60px; /* reduced top margin for mobile */
+    }
+    
+    h1 {
+        font-size: 22px;
+    }
+    
+    .description, .result-text, .header-quote {
+        font-size: 14px;
+    }
+
+    .language-switcher button {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    
+    .site-header {
+        padding: 10px 20px;
+    }
+    
+    /* Adjust rating labels for smaller screens */
+    .rating-options label {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .rating-options span {
+        font-size: 12px;
+    }
+    
+    /* Ensure randomized questions container fits */
+    #randomized-questions {
+        display: flex;
+        flex-direction: column;
+    }
+}
